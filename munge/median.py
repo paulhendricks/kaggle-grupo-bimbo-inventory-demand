@@ -33,7 +33,6 @@ if __name__ == '__main__':
     town_state = load_data(FILE_PATH, 'town_state.csv')
     train = load_data(FILE_PATH, 'train.csv')
     sample = load_data('./submissions/', 'sample_submission.csv')
-    columns = ['Agencia_ID', 'Canal_ID', 'Ruta_SAK', 'Cliente_ID', 'Producto_ID']
     columns = ['Producto_ID']
     x = train.groupby(columns).median()
     y = x.Demanda_uni_equil.reset_index()
