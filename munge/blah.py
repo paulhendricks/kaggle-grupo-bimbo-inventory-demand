@@ -28,8 +28,19 @@ def rmsle(y, y_pred):
 if __name__ == '__main__':
     print("Started!")
     cliente_tabla = load_data(FILE_PATH, 'cliente_tabla.csv')
-    producto_table = load_data(FILE_PATH, 'producto_tabla.csv')
+    producto_tabla = load_data(FILE_PATH, 'producto_tabla.csv')
     test = load_data(FILE_PATH, 'test.csv')
     town_state = load_data(FILE_PATH, 'town_state.csv')
     train = load_data(FILE_PATH, 'train.csv')
+    sample = load_data('./submissions/', 'sample_submission.csv')
+    columns = ['Agencia_ID', 'Canal_ID', 'Ruta_SAK', 'Cliente_ID', 'Producto_ID']
+    columns = ['Producto_ID']
+    x = train.groupby(columns).median()
+    y = x.Demanda_uni_equil.reset_index()
+    foo = pd.merge(test, y, how='left', on=columns)
+    bar = foo[['id', 'Demanda_uni_equil']]
+    bar['Demanda_uni_equil'] = np.int64(bar['Demanda_uni_equil'])
+    bar[bar.Demanda_uni_equil < 0] = 0
+    bar.id = sample.id
+    bar.to_csv('./submissions/median-submission.csv', index=False)
     print("Finished!")

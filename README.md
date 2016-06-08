@@ -1,2 +1,1 @@
-# Kaggle: Template
-
+# Kaggle: Grupo Bimbo Inventory Demand
