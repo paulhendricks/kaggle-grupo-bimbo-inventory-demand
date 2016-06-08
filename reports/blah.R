@@ -1,0 +1,1 @@
+data <- read.table(unz("Sales.zip", "Sales.dat"), nrows=10, header=T, quote="\"", sep=",")
