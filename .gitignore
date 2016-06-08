@@ -4,3 +4,4 @@
 *.Rproj
 data/
 submissions/
+.idea/
